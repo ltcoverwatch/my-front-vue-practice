@@ -31,14 +31,14 @@ export default {
   },
   methods: {
     login() {
-      this.$axios
-        .post("/login", {
+      this.$axios  // axios发送http请求
+        .post("/login", {         // 完整路径在main.js里配置完成了
           username: this.loginForm.username,
           password: this.loginForm.password,
         })
         .then((successResponse) => {
           if (successResponse.data.code === 200) {
-            // this.$router.replace({ path: "/index" });
+            this.$router.replace({ path: "/home" });
             console.log("成功登录");
           } else if (successResponse.data.code === 400) {
             console.log("失败，状态码400");

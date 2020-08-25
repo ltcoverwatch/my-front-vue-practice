@@ -4,7 +4,7 @@ import Vue from 'vue'
 import ElementUI from 'element-ui'
 import App from './App'
 import router from './router'
-import 'element-ui/lib/theme-chalk/index.css'
+import 'element-ui/lib/theme-chalk/index.css'  //导入样式表，否则element样式出不来
 
 // 设置反向代理，前端请求默认发送到 http://localhost:8888/api
 var axios = require('axios')
