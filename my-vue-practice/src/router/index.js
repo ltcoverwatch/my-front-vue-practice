@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
+import LibraryIndex from '@/components/library/LibraryIndex'
+import HomeIndex from '@/components/home/HomeIndex'
 //import所有需要的组件
 
 Vue.use(Router)
@@ -9,7 +11,7 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',  // history路由模式，路径更友好
   routes: [
-    
+
     {
       path: '/',
       name: 'home',
@@ -23,7 +25,19 @@ export default new Router({
     {
       path: '/home',
       name: 'home',
-      component: Home
-    }
+      component: Home,
+      children: [
+        {
+          path: '/home',
+          name: 'homeindex',
+          component: HomeIndex
+        },
+        {
+          path: '/library',
+          name: 'library',
+          component: LibraryIndex
+        }
+      ]
+    },
   ]
 })
