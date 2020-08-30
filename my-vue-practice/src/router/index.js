@@ -4,6 +4,7 @@ import Login from '@/components/Login'
 import Home from '@/components/Home'
 import LibraryIndex from '@/components/library/LibraryIndex'
 import HomeIndex from '@/components/home/HomeIndex'
+import NotebookIndex from '@/components/notebook/NotebookIndex'
 //import所有需要的组件
 
 Vue.use(Router)
@@ -36,6 +37,11 @@ export default new Router({
           path: '/library',
           name: 'library',
           component: LibraryIndex
+        },
+        {
+          path: '/jotter',
+          name: 'notebook',
+          component: NotebookIndex
         }
       ]
     },
