@@ -11,28 +11,8 @@
       </el-col>
       <el-col :span="20">
         <el-table :data="tableData" border style="width: 100%" height="100%">
-          <el-table-column prop="date" label="時間" width="50"></el-table-column>
-          <el-table-column v-for="n in 20" :key="n.id" label="回線1" width="60"></el-table-column>
-          <el-table-column prop="name" label="回線1" width="50"></el-table-column>
-          <el-table-column prop="name" label="回線2" width="50"></el-table-column>
-          <el-table-column prop="name" label="回線3" width="50"></el-table-column>
-          <el-table-column prop="name" label="回線4" width="50"></el-table-column>
-          <el-table-column prop="name" label="回線5" width="50"></el-table-column>
-          <el-table-column prop="name" label="回線6" width="50"></el-table-column>
-          <el-table-column prop="name" label="回線7" width="50"></el-table-column>
-          <el-table-column prop="name" label="回線8" width="50"></el-table-column>
-          <el-table-column prop="name" label="回線9" width="50"></el-table-column>
-          <el-table-column prop="name" label="回線10" width="50"></el-table-column>
-          <el-table-column prop="name" label="回線11" width="50"></el-table-column>
-          <el-table-column prop="name" label="回線12" width="50"></el-table-column>
-          <el-table-column prop="name" label="回線13" width="50"></el-table-column>
-          <el-table-column prop="name" label="回線14" width="50"></el-table-column>
-          <el-table-column prop="name" label="回線15" width="50"></el-table-column>
-          <el-table-column prop="name" label="回線16" width="50"></el-table-column>
-          <el-table-column prop="name" label="回線17" width="50"></el-table-column>
-          <el-table-column prop="name" label="回線18" width="50"></el-table-column>
-          <el-table-column prop="name" label="回線19" width="50"></el-table-column>
-          <el-table-column prop="name" label="回線20" width="50"></el-table-column>
+          <el-table-column prop="time" label="時間" width="70"></el-table-column>
+          <el-table-column v-for="cn in columnNames" :key="cn" :label="cn" width="60"></el-table-column>
         </el-table>
       </el-col>
     </el-row>
@@ -50,9 +30,28 @@ export default {
   data() {
     //这里存放数据
     return {
-      columnNumber: 20,
+      columnNames: ["111", "222", "333", "444"],
       value1: new Date(),
       value: new Date(),
+      tableData: [
+          {time: '07 : 00'},
+          {time: '-'},
+          {time: '07 : 30'},
+          {time: '-'},
+          {time: '08 : 00'},
+          {time: '-'},
+          {time: '08 : 30'},
+          {time: '-'},
+          {time: '09 : 00'},
+          {time: '-'},
+          {time: '09 : 30'},
+          {time: '-'},
+          {time: '10 : 00'},
+          {time: '-'},
+          {time: '10 : 30'},
+          {time: '-'},
+          {time: '11 : 00'},
+      ]
     };
   },
   //监听属性 类似于data概念
@@ -79,5 +78,13 @@ export default {
 .el-calendar-table .el-calendar-day {
   height: 30px;
   font-size: 14px;
+}
+
+.el-calendar__title{
+    font-size: 35px;
+}
+
+.el-table td{
+    padding: 0;
 }
 </style>
