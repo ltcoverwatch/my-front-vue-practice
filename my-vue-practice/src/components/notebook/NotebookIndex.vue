@@ -10,7 +10,7 @@
         </div>
       </el-col>
       <el-col :span="20">
-        <el-table :data="tableData" border style="width: 100%" height="100%">
+        <el-table :data="tableData" border style="width: 100%" height="100%" id="mytable">
           <el-table-column prop="time" label="時間" width="70"></el-table-column>
           <el-table-column v-for="cn in columnNames" :key="cn" :label="cn" width="60"></el-table-column>
         </el-table>
@@ -34,7 +34,9 @@ export default {
       value1: new Date(),
       value: new Date(),
       tableData: [
-          {time: '07 : 00'},
+          {
+            time: '07 : 00'
+            },
           {time: '-'},
           {time: '07 : 30'},
           {time: '-'},
@@ -59,11 +61,18 @@ export default {
   //监控data中的数据变化
   watch: {},
   //方法集合
-  methods: {},
+  methods: {
+    drawBar(){
+      var table = this.$document.get("mytable");
+      table.rows[3].cells[4].style.backgroundColor = "red";
+    },
+  },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
+  mounted() {
+    this.drawBar();
+  },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
   beforeUpdate() {}, //生命周期 - 更新之前
