@@ -12,15 +12,13 @@
       <el-col :span="20">
         <el-table
           :data="tableData"
-          border
+          :border=true
           :span-method="mySpanMethod"
-          style="width: 100%"
-          height="100%"
           id="mytable"
           :cell-style="myCellStyle"
           :cell-class-name="cellClassName"
         >
-          <el-table-column prop="time" label="時間" width="70"></el-table-column>
+          <el-table-column prop="time" label="時間" width="60"></el-table-column>
           <el-table-column v-for="cn in columnNames" :key="cn" :label="cn" width="60">
             <template slot-scope="item" v-if="haveMeetingOrNot(item.column.index, item.row.index)">
               <el-popover
@@ -79,6 +77,7 @@ export default {
       tableData: [
         {
           time: "07 : 00",
+          obj1: {}
         },
         { time: "-" },
         { time: "07 : 30" },
@@ -151,6 +150,7 @@ export default {
         [2, 0, 2],
         [4, 0, 8],
         [3, 7, 9],
+        [3, 8, 6],
         [11, 8, 2],
         [20, 7, 9],
       ],
@@ -179,34 +179,34 @@ export default {
       return false;
     },
     mySpanMethod({ row, column, rowIndex, columnIndex }) {
-      for (let i = 0; i < this.spanArr.length; i++) {
-        //console.log(this.spanArr[i]);
-        if (columnIndex === this.spanArr[i][0]) {
-          if (rowIndex === this.spanArr[i][1]) {
-            return {
-              rowspan: this.spanArr[i][2],
-              colspan: 1,
-            };
-          } else if (
-            rowIndex > this.spanArr[i][1] &&
-            rowIndex < this.spanArr[i][1] + this.spanArr[i][2]
-          ) {
-            return {
-              rowspan: 0, //隐藏单元格，否则会错位，必须写
-              colspan: 0,
-            };
-          }
-        }
-      }
+      // for (let i = 0; i < this.spanArr.length; i++) {
+      //   if (columnIndex === this.spanArr[i][0]) {
+      //     if (rowIndex === this.spanArr[i][1]) {
+      //       return {
+      //         rowspan: this.spanArr[i][2],
+      //         colspan: 1,
+      //       };
+      //     } else if (
+      //       rowIndex > this.spanArr[i][1] &&
+      //       rowIndex < this.spanArr[i][1] + this.spanArr[i][2]
+      //     ) {
+      //       return {
+      //         rowspan: 0, //隐藏单元格，否则会错位，必须写
+      //         colspan: 0,
+      //       };
+      //     }
+      //   }
+      // }
     },
     myCellStyle({ row, column, rowIndex, columnIndex }) {
       for (let i = 0; i < this.spanArr.length; i++) {
         if (
           columnIndex === this.spanArr[i][0] &&
-          rowIndex === this.spanArr[i][1]
+          rowIndex >= this.spanArr[i][1] &&
+          rowIndex <= this.spanArr[i][1] + this.spanArr[i][2]
         ) {
           return {
-            background: "green",
+            background: "pink",
           };
         }
       }
@@ -276,5 +276,9 @@ export default {
 
 .el-table td {
   padding: 0;
+}
+
+.el-table__row>td{
+	border-bottom: none;
 }
 </style>
